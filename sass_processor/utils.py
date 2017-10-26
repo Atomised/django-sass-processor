@@ -28,7 +28,7 @@ def get_db_setting(whl):
             for field, value in fields.items():
                 if isinstance(value, basestring):
                     print field, value
-                    sass_map[field] = value
+                    sass_map[field] = str(value)
             print sass_map
             return sass_map
         
