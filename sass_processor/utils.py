@@ -23,9 +23,14 @@ def get_db_setting(whl):
             #     print getattr(whitelabel[0], key)
             #     return getattr(whitelabel[0], key)
             # else:
-            print model_to_dict(whitelabel[0], fields=[field.name for field in whitelabel[0]._meta.fields]) 
-            print [(field.name, getattr(whitelabel[0],field.name)) for field in whitelabel[0]._meta.fields]
-            return [(field.name, getattr(whitelabel[0],field.name)) for field in whitelabel[0]._meta.fields]
+            fields = whitelabel[0].__dict__
+            sass_map = {}   
+            for field, value in fields.items():
+                if type field not in ('ImageField', 'FileField'):
+                    print field, value
+                    sass_map[field] = value
+            print sass_map
+            return sass_map
         
     except AttributeError as e:
         raise TemplateSyntaxError(e.message)
