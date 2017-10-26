@@ -11,9 +11,9 @@ def get_setting(key):
         raise TemplateSyntaxError(e.message)
 
 
-def get_db_setting(key):
+def get_db_setting(request, key):
     try:
-    	config = whitelabel_processor()
+    	config = whitelabel_processor(request)
     	print config
         return getattr(config, key)
     except AttributeError as e:
