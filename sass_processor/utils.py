@@ -3,6 +3,7 @@ from django.conf import settings
 from django.template import TemplateSyntaxError
 from rtg_portal.context_processors import whitelabel_processor
 from admin_portal.models import Whitelabel
+from django.forms.models import model_to_dict
 
 
 def get_setting(key):
@@ -22,8 +23,8 @@ def get_db_setting(whl):
             #     print getattr(whitelabel[0], key)
             #     return getattr(whitelabel[0], key)
             # else:
-            print whitelabel[0]
-            return whitelabel[0]
+            print model_to_dict(whitelabel[0], fields=[field.name for field in whitelabel[0]._meta.fields]) 
+            return model_to_dict(whitelabel[0], fields=[field.name for field in whitelabel[0]._meta.fields])whitelabel[0]
         
     except AttributeError as e:
         raise TemplateSyntaxError(e.message)
