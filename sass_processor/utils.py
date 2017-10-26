@@ -14,11 +14,11 @@ def get_setting(key):
 
 def get_db_setting(whl, key):
     try:
-    	# and any associated whitelabel
+        # and any associated whitelabel
         whitelabel = Whitelabel.objects.filter(slug=whl).order_by('id')    
         # if whitelabel, load config
         if whitelabel.count() != 0:
-        	print getattr(whitelabel[0], key)
+            print getattr(whitelabel[0], key)
             return getattr(whitelabel[0], key)
         
     except AttributeError as e:
