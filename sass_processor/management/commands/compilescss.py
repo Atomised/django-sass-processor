@@ -21,7 +21,7 @@ from sass_processor.apps import APPS_INCLUDE_DIRS
 from sass_processor.processor import SassProcessor
 from sass_processor.storage import SassFileStorage, find_file
 from sass_processor.templatetags.sass_tags import SassSrcNode
-from sass_processor.utils import get_setting
+from sass_processor.utils import get_setting, get_db_setting
 
 __all__ = ['get_template', 'Command']
 

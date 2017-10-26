@@ -9,7 +9,7 @@ from django.core.files.base import ContentFile
 from django.template import Context
 from django.utils.encoding import force_bytes, iri_to_uri
 from django.utils.six.moves.urllib.parse import urljoin
-from sass_processor.utils import get_setting
+from sass_processor.utils import get_setting, get_db_setting
 
 from .storage import SassFileStorage, find_file
 from .apps import APPS_INCLUDE_DIRS
