@@ -26,7 +26,7 @@ def get_db_setting(whl):
             fields = whitelabel[0].__dict__
             sass_map = {}   
             for field, value in fields.items():
-                if type field not in ('ImageField', 'FileField'):
+                if isinstance(value, basestring):
                     print field, value
                     sass_map[field] = value
             print sass_map
