@@ -24,6 +24,7 @@ def get_db_setting(whl):
             #     return getattr(whitelabel[0], key)
             # else:
             print model_to_dict(whitelabel[0], fields=[field.name for field in whitelabel[0]._meta.fields]) 
+            print [(field.name, getattr(obj,field.name)) for field in obj._meta.fields]
             return model_to_dict(whitelabel[0], fields=[field.name for field in whitelabel[0]._meta.fields])
         
     except AttributeError as e:
