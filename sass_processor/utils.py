@@ -2,6 +2,7 @@
 from django.conf import settings
 from django.template import TemplateSyntaxError
 from rtg_portal.context_processors import whitelabel_processor
+from admin_portal.models import Whitelabel
 
 
 def get_setting(key):
@@ -11,10 +12,14 @@ def get_setting(key):
         raise TemplateSyntaxError(e.message)
 
 
-def get_db_setting(request, key):
+def get_db_setting(whl, key):
     try:
-    	config = whitelabel_processor(request)
-    	print config
-        return getattr(config, key)
+    	# and any associated whitelabel
+        whitelabel = Whitelabel.objects.filter(slug=whl).order_by('id')    
+        # if whitelabel, load config
+        if whitelabel.count() != 0:
+        	print getattr(whitelabel[0], key)
+            return getattr(whitelabel[0], key)
+        
     except AttributeError as e:
         raise TemplateSyntaxError(e.message)
