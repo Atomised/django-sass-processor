@@ -68,7 +68,9 @@ class SassProcessor(object):
             raise ImproperlyConfigured(msg.format(css_filename))
 
         # add a function to be used from inside SASS
-        custom_functions = {'get-setting': get_setting}
+        custom_functions = {
+            'get-setting': get_db_setting,
+        }
 
         # otherwise compile the SASS/SCSS file into .css and store it
         sourcemap_url = self.storage.url(sourcemap_filename)
