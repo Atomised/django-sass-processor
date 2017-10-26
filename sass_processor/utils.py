@@ -12,14 +12,13 @@ def get_setting(key):
         raise TemplateSyntaxError(e.message)
 
 
-def get_db_setting(whl, key):
+def get_db_setting(whl):
     try:
         # and any associated whitelabel
         whitelabel = Whitelabel.objects.filter(slug=whl).order_by('id')    
         # if whitelabel, load config
         if whitelabel.count() != 0:
-            print getattr(whitelabel[0], key)
-            return getattr(whitelabel[0], key)
+            return whitelabel[0]
         
     except AttributeError as e:
         raise TemplateSyntaxError(e.message)
